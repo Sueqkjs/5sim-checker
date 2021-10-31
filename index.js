@@ -3,10 +3,12 @@ const blackCount = [ 0, 1000, 2000 ];
 
 $("#check").onclick = async() => {
   const product = $("#product").value;
-  const r = await fetch("https://leftunacceptablecoderesource.sueqk.repl.co/c?product=" + product, { mode: "cors" });
+  const r = await (
+    await fetch("https://leftunacceptablecoderesource.sueqk.repl.co/c?product=" + product, { mode: "cors" })
+  ).text();
   console.log(r);
-  if ((await r.text())?.match("incorrect")) return $("#result").value = "プロダクトミスってるぞあほ";
-  const res = (await r.json())[product];
+  if (r?.match("incorrect")) return $("#result").value = "プロダクトミスってるぞあほ";
+  const res = JSON.parse(r)product];
   let result;
   for (let country in res) {
     for (let channelId in res[country]) {
