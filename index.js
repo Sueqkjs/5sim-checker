@@ -3,9 +3,9 @@ const blackCount = [ 0, 1000, 2000 ];
 
 $("#check").onclick = async() => {
   const product = $("#product").value;
-  const r = await fetch("https://5sim.net/v1/guest/prices?product=" + product, { mode: "no-cors" }).text();
+  const r = await fetch("https://5sim.net/v1/guest/prices?product=" + product, { mode: "no-cors" });
   if (!r.ok) return $("#result").value = "プロダクトミスってるぞあほ";
-  const res = JSON.parse(r)[product];
+  const res = (await r.json())[product];
   let result;
   for (let country in res) {
     for (let channelId in country) {
