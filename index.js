@@ -20,7 +20,7 @@ $("#check").onclick = async() => {
 function list(res, i) {
   const arr = new Set();
   let no = [];
-  while (arr.size-1 < i) {
+  while (arr.size < i) {
     let result;
     for (let country in res) {
       for (let channelId in res[country]) {
