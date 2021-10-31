@@ -13,7 +13,7 @@ $("#check").onclick = async() => {
   for (let country in res) {
     for (let channelId in res[country]) {
       const channel = res[country][channelId];
-      if (blackCount.includes(channel.count)) return;
+      if (blackCount.includes(channel.count)) continue;
       if (!result) result = {
         country,
         channelId,
