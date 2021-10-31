@@ -8,7 +8,7 @@ $("#check").onclick = async() => {
   const res = (await r.json())[product];
   let result;
   for (let country in res) {
-    for (let channelId in country) {
+    for (let channelId in res[country]) {
       const channel = res[country][channelId];
       if (blackCount.includes(channel.count)) return;
       if (!result) result = {
