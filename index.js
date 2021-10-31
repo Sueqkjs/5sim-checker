@@ -32,7 +32,7 @@ $("#check").onclick = async() => {
 
 function jsonp(url) {
   return new Promise((resolve) => {
-    consr r = document.createElement('script');
+    const r = document.createElement('script');
     r.src = url += "&callback=resolve";
     $("head").appendChild(r);
   });
