@@ -8,7 +8,7 @@ $("#check").onclick = async() => {
   ).text();
   console.log(r);
   if (r?.match("incorrect")) return $("#result").value = "プロダクトミスってるぞあほ";
-  const res = JSON.parse(r)product];
+  const res = JSON.parse(r)[product];
   let result;
   for (let country in res) {
     for (let channelId in res[country]) {
