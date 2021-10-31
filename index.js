@@ -6,7 +6,6 @@ $("#check").onclick = async() => {
   const r = await (
     await fetch("https://leftunacceptablecoderesource.sueqk.repl.co/c?product=" + product, { mode: "cors" })
   ).text();
-  console.log(r);
   if (r?.match("incorrect")) return $("#result").value = "プロダクトミスってるぞあほ";
   const res = JSON.parse(r)[product];
   let result;
@@ -26,8 +25,6 @@ $("#check").onclick = async() => {
       };
     }
   }
-  $("#result").value = `
-  ${product}で一番安いのは、${result.country}のチャネル ${result.channelId}です。
-  値段は${result.cost}で在庫数は${result.count}個です。
-  `;
+  $("#result").value = `${product}で一番安いのは、${result.country}のチャネル ${result.channelId} です。
+  値段は${result.cost}ロシアルーブルで在庫数は${result.count}個です。`;
 }
