@@ -28,5 +28,5 @@ $("#check").onclick = async() => {
   $("#result").value = `${product}で一番安いのは、${result.country}のチャネル ${result.channelId} です。
 値段は${result.cost}ロシアルーブルで在庫数は${result.count}個です。`;
   let length = Math.max(...$("#result").value.split("\n").map(x => x.length));
-  $("#result").setAttribute("cols", length + 25);
+  $("#result").setAttribute("cols", length + 27);
 }
