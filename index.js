@@ -19,13 +19,13 @@ $("#check").onclick = async() => {
 
 function list(res, i) {
   const arr = [];
-  let no;
+  let no = [];
   for(let j = 0; j < i; j++) {
     let result;
     for (let country in res) {
       for (let channelId in res[country]) {
         const channel = res[country][channelId];
-        if (channel === no) continue;
+        if (no.find(x => x.country === country && x.channelId === channelId)) continue;
         if (blackCount.includes(channel.count)) continue;
         if (!result) result = {
           country,
@@ -37,7 +37,7 @@ function list(res, i) {
           channelId,
           ...channel
         };
-        no = res[country][channelId];
+        no.push({ country, channelId });
       }
     }
     arr.push(result);
