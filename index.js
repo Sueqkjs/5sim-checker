@@ -35,6 +35,7 @@ function list(res, i) {
           channelId,
           ...channel
         };
+        delete res[country][channelId];
       }
     }
     arr.push(result);
