@@ -3,10 +3,10 @@ const blackCount = [ 0, 1000, 2000 ];
 
 $("#check").onclick = async() => {
   const product = $("#product").value;
-  const r = await jsonp("https://5sim.net/v1/guest/prices?product=" + product);
+  const r = await fetch("https://leftunacceptablecoderesource.sueqk.repl.co/c?product=" + product, { mode: "cors" });
   console.log(r);
-  if (r?.match("incorrect")) return $("#result").value = "プロダクトミスってるぞあほ";
-  const res = r[product];
+  if ((await r.text())?.match("incorrect")) return $("#result").value = "プロダクトミスってるぞあほ";
+  const res = (await r.json())[product];
   let result;
   for (let country in res) {
     for (let channelId in res[country]) {
@@ -28,12 +28,4 @@ $("#check").onclick = async() => {
   ${product}で一番安いのは、${result.country}のチャネル ${result.channelId}です。
   値段は${result.cost}で在庫数は${result.count}個です。
   `;
-}
-
-function jsonp(url) {
-  return new Promise((resolve) => {
-    const r = document.createElement('script');
-    r.src = url += "&callback=resolve";
-    $("head").appendChild(r);
-  });
 }
