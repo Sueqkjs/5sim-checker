@@ -10,7 +10,7 @@ $("#check").onclick = async() => {
   const res = JSON.parse(r)[product];
   let result = list(res, 3);
   $("#result").value = 
-    result.map((x, i) => `${product}で${i}番目に安いのは、${x.country}のチャネル ${x.channelId} です。
+    result.map((x, i) => `${product}で${i + 1}番目に安いのは、${x.country}のチャネル ${x.channelId} です。
 値段は${x.cost}ロシアルーブルで在庫数は${x.count}個です。`).join("\n\n");
   let length = Math.max(...$("#result").value.split("\n").map(x => x.length));
   $("#result").setAttribute("cols", length + 17);
@@ -18,14 +18,14 @@ $("#check").onclick = async() => {
 }
 
 function list(res, i) {
-  const arr = [];
+  const arr = new Set();
   let no = [];
-  for(let j = 0; j < i; j++) {
+  while (arr.size-1 < i) {
     let result;
     for (let country in res) {
       for (let channelId in res[country]) {
         const channel = res[country][channelId];
-        if (no.find(x => x.country === country && x.channelId === channelId)) continue;
+        if (!channel) continue;
         if (blackCount.includes(channel.count)) continue;
         if (!result) result = {
           country,
@@ -33,16 +33,16 @@ function list(res, i) {
           ...channel
         };
         if (result.cost > channel.cost) {
-          result = {
+          result = Object.create({
             country,
             channelId,
             ...channel
-          };
-          no.push({ country, channelId });
+          });
+          delete res[country][channelId];
         }
       }
     }
-    arr.push(result);
+    arr.add(result);
   }
-  return arr;
+  return [ ...arr ];
 }
