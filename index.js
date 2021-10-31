@@ -32,12 +32,14 @@ function list(res, i) {
           channelId,
           ...channel
         };
-        if (result.cost > channel.cost) result = {
-          country,
-          channelId,
-          ...channel
-        };
-        no.push({ country, channelId });
+        if (result.cost > channel.cost) {
+          result = {
+            country,
+            channelId,
+            ...channel
+          };
+          no.push({ country, channelId });
+        }
       }
     }
     arr.push(result);
