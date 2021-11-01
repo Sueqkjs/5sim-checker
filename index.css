@@ -1,0 +1,17 @@
+input {
+  color: #fff;
+  background: #000;
+  border-radius: 0px;
+}
+
+p {
+  color: #fff;
+  background: #000;
+  border-radius: 0px;
+  border: thick double #fff;
+}
+
+body {
+  color: #fff;
+  background: #000;
+}
