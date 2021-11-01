@@ -11,7 +11,7 @@ $("#check").onclick = async() => {
   let result = list(res, 3);
   $("#result").innerHTML = 
     result.map((x, i) => `${product}で${i + 1}番目に安いのは、${x.country}のチャネル ${x.channelId} です。
-値段は${x.cost}ロシアルーブルで在庫数は${x.count}個です。`).join("\n\n");
+値段は${x.cost}ロシアルーブルで在庫数は${x.count}個です。`).join("\n\n").replace(/\n/g, "<br>");
 }
 
 function list(res, i) {
